@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "Smart Hindi-English Translator",
+  "version": "1.0.0",
+  "description": "Translate selected text inline",
+
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "contextMenus"
+  ],
+
+  "host_permissions": [
+    "<all_urls>"
+  ],
+
+  "background": {
+    "service_worker": "src/background/serviceWorker.ts",
+    "type": "module"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content/contentScript.ts"]
+    }
+  ],
+
+  "action": {
+    "default_popup": "index.html"
+  },
+
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
