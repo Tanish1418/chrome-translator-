@@ -1,75 +1,71 @@
-# React + TypeScript + Vite
+# Chrome Extension
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An AI-powered Chrome Extension that provides intelligent language and productivity tools directly inside your browser.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+### Translation
+- Translate text into multiple languages
+- Supports dozens of languages
+- Speech output for translated text
+- Detect source language automatically
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+### Summarizer
+- Generate concise summaries
+- Bullet point summaries
+- Preserve important information
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Rewrite
+Rewrite text in different styles including:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Professional
+- Academic
+- Simple
+- Formal
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
 
-```
+### Explain Selected Text
+Right-click any selected text on a webpage and get an easy-to-understand explanation.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Grammar Checker
+Improve grammar, punctuation and sentence structure using AI.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
 
-```
+### Webpage Translation
+Translate webpage content while preserving the page structure.
+
+---
+
+### Translation History
+- Stores previous AI operations
+- Includes timestamps
+- Easy review of previous translations
+
+---
+
+### Settings
+- Configure API key
+- Select preferred translation language
+
+---
+
+# Tech Stack
+
+- React
+- TypeScript
+- Vite
+- Chrome Extension Manifest V3
+- OpenRouter API
+- OpenAI GPT-4o Mini
+
+---
