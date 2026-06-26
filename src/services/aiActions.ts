@@ -1,18 +1,22 @@
-import {
-  askAI
-}
-from "./openRouterClient";
+import { askAI } from "./openRouterClient";
 
 export async function translateText(
   text: string,
   targetLanguage: string
-) {
+): Promise<string> {
 
   return await askAI(
 
-`Translate the following into ${targetLanguage}.
+`You are a professional translator.
 
-Return ONLY the translated text.
+Translate the following text into ${targetLanguage}.
+
+Rules:
+- Return ONLY the translated text.
+- Keep formatting.
+- Do not explain.
+
+Text:
 
 ${text}`,
 
@@ -26,11 +30,11 @@ ${text}`,
 
 export async function detectLanguage(
   text: string
-) {
+): Promise<string> {
 
   return await askAI(
 
-`Detect the language.
+`Detect the language of the following text.
 
 Reply ONLY with the language name.
 

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Smart Hindi-English Translator",
+  "name": "Smart translator",
   "version": "1.0.0",
-  "description": "Translate selected text inline",
+  "description": "Chrome extension for translation, summarization, rewriting, explanation, grammar checking, and webpage assistance.",
 
   "permissions": [
     "storage",

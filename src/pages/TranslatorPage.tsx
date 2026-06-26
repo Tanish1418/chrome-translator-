@@ -1,8 +1,13 @@
 import { useState } from "react";
+
 import {
   translateText,
   detectLanguage,
 } from "../services/aiActions";
+
+import {
+  saveHistory
+} from "../storage/historyStorage";
 
 export default function TranslatorPage() {
 
@@ -15,11 +20,16 @@ export default function TranslatorPage() {
   const [language, setLanguage] =
     useState("English");
 
-  const [detectedLanguage,
-    setDetectedLanguage] =
-      useState("");
+  const [
+    detectedLanguage,
+    setDetectedLanguage
+  ] = useState("");
 
   async function handleTranslate() {
+
+    if (!input.trim()) {
+      return;
+    }
 
     const result =
       await translateText(
@@ -29,9 +39,31 @@ export default function TranslatorPage() {
 
     setOutput(result);
 
+    await saveHistory({
+
+      id:
+        crypto.randomUUID(),
+
+      action:
+        "translate",
+
+      input,
+
+      output:
+        result,
+
+      timestamp:
+        Date.now()
+
+    });
+
   }
 
   async function handleDetect() {
+
+    if (!input.trim()) {
+      return;
+    }
 
     const result =
       await detectLanguage(
@@ -41,6 +73,24 @@ export default function TranslatorPage() {
     setDetectedLanguage(
       result
     );
+
+    await saveHistory({
+
+      id:
+        crypto.randomUUID(),
+
+      action:
+        "detect",
+
+      input,
+
+      output:
+        result,
+
+      timestamp:
+        Date.now()
+
+    });
 
   }
 
@@ -80,9 +130,7 @@ export default function TranslatorPage() {
           )
         }
 
-        placeholder="
-Enter text to translate
-"
+        placeholder="Enter text to translate"
 
       />
 
@@ -101,61 +149,20 @@ Enter text to translate
 
       >
 
-        <option>
-          English
-        </option>
-
-        <option>
-          Hindi
-        </option>
-
-        <option>
-          French
-        </option>
-
-        <option>
-          German
-        </option>
-
-        <option>
-          Spanish
-        </option>
-
-        <option>
-          Italian
-        </option>
-
-        <option>
-          Portuguese
-        </option>
-
-        <option>
-          Russian
-        </option>
-
-        <option>
-          Chinese
-        </option>
-
-        <option>
-          Japanese
-        </option>
-
-        <option>
-          Korean
-        </option>
-
-        <option>
-          Arabic
-        </option>
-
-        <option>
-          Turkish
-        </option>
-
-        <option>
-          Dutch
-        </option>
+        <option>English</option>
+        <option>Hindi</option>
+        <option>French</option>
+        <option>German</option>
+        <option>Spanish</option>
+        <option>Italian</option>
+        <option>Portuguese</option>
+        <option>Russian</option>
+        <option>Chinese</option>
+        <option>Japanese</option>
+        <option>Korean</option>
+        <option>Arabic</option>
+        <option>Turkish</option>
+        <option>Dutch</option>
 
       </select>
 
@@ -205,7 +212,16 @@ Enter text to translate
 
       <br />
 
-      <pre>
+      <h3>
+        Translation
+      </h3>
+
+      <pre
+        style={{
+          whiteSpace: "pre-wrap",
+          wordBreak: "break-word"
+        }}
+      >
         {output}
       </pre>
 
